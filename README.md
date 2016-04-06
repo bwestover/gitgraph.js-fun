@@ -7,7 +7,7 @@ This html file uses [gitgraphjs](https://github.com/nicoespeon/gitgraph.js) to m
 To serve these files locally with Python (2.x):
 
 1. Clone this repo
-    `git clone git@github.com/bwestover/gitgraph.js-fun.git`
+    `git clone git@github.com:bwestover/gitgraph.js-fun.git`
 2. `cd gitgraph.js-fun`
 3. Start python SimpleHTTPServer
   `python -m SimpleHTTPServer`

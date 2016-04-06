@@ -1,0 +1,53 @@
+<html>
+  <head><title>Megabranch with GitGraph</title></head>
+  <body>
+    <canvas id="gitGraph"></canvas>
+    <script src="http://gitgraphjs.com/js/gitgraph.min.js"></script>
+    <script>
+    //setup gitgraph object
+    var gitgraph = new GitGraph({
+      template: "metro", // or blackarrow
+      orientation: "vertical",
+      author: "Jane Doe",
+      mode: "extended" // or compact if you don't want the messages
+    });
+    //define 4 branches for use in our example
+    var master = gitgraph.branch("master");
+    var megabranch = gitgraph.branch("megabranch");
+    var topicbranch = megabranch.branch("A-PR-from-megabranch");
+    var anothertopic = megabranch.branch("Another-PR-from-megabranch");
+
+    gitgraph.commit("Commit on master");
+
+    megabranch.commit("Create a megabranch");
+    megabranch.commit("Commit on megabranch");
+
+    master.commit({message: "A commit to master", author: "John Fixer"});
+
+    topicbranch.commit({message: "Work on a topic off the megabranch", author: "Jane Feature"});
+
+    master.merge(megabranch);
+
+    topicbranch.commit({message: "More work on this topic", author: "Jane Feature"});
+
+    anothertopic.commit({message: "Creating another topic off of megabranch", author: "John Feature"});
+
+    master.merge(megabranch)
+
+    anothertopic.commit({message: "Finishing another topic", author: "John Feature"});
+    anothertopic.merge(megabranch, {author:"John Feature"});
+
+    megabranch.commit("Commit to the Megabranch");
+
+
+    megabranch.merge(topicbranch);
+    megabranch.commit("Another commit to the megabranch");
+
+    topicbranch.merge(megabranch, {author: "Jane Feature"});
+
+    master.commit({message: "Commit on Master"});
+
+    megabranch.merge(master);
+    </script>
+  </body>
+</html>
