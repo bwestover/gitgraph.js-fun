@@ -13,13 +13,12 @@
     });
     //define 4 branches for use in our example
     var master = gitgraph.branch("master");
+    gitgraph.commit("Commit on master");
     var megabranch = gitgraph.branch("megabranch");
+    megabranch.commit("Create a megabranch");
     var topicbranch = megabranch.branch("A-PR-from-megabranch");
     var anothertopic = megabranch.branch("Another-PR-from-megabranch");
 
-    gitgraph.commit("Commit on master");
-
-    megabranch.commit("Create a megabranch");
     megabranch.commit("Commit on megabranch");
 
     master.commit({message: "A commit to master", author: "John Fixer"});
